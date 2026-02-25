@@ -105,7 +105,13 @@ function callNumber() {
 document.getElementById("ding");
   if (ding) {
     ding.currentTime = 0;
-    ding.play().catch(() => {});
+    ding.play().then(() => {
+      speechSynthesis.speak(msg);
+    }).catch(() => {
+      speechSynthesis.speak(msg);
+    });
+  } else {
+    speechSynthesis.speak(msg);
   }
 
   const msg = new SpeechSynthesisUtterance(

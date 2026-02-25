@@ -81,7 +81,7 @@ function callNumber() {
   if (number === "") return;
 
   const msg = new SpeechSynthesisUtterance(
-    "주문 번호 " + number + "번 고객님, 음료가 준비되었습니다."
+    number + "번 고객님, 음료가 준비되었습니다."
   );
   msg.lang = "ko-KR";
 

@@ -98,9 +98,8 @@ function callNumber() {
   );
   msg.lang = "ko-KR";
 
-  document.getElementById("ding").play();
-
-  speechSynthesis.speak(msg);
+  document.getElementById("ding").play()
+  ;
 
   speechSynthesis.cancel();
   speechSynthesis.speak(msg);

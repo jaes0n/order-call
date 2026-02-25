@@ -49,6 +49,7 @@ button:active {
 
 <body>
 
+<audio id="ding" src="ding.mp3"></audio>
 <div id="display">0</div>
 
 <div class="keypad">
@@ -96,6 +97,10 @@ function callNumber() {
     number + "번 고객님, 음료가 준비되었습니다."
   );
   msg.lang = "ko-KR";
+
+  document.getElementById("ding").play();
+
+  speechSynthesis.speak(msg);
 
   speechSynthesis.cancel();
   speechSynthesis.speak(msg);

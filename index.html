@@ -111,11 +111,11 @@ document.getElementById("ding");
   
 if (ding) {
     ding.currentTime = 0;
-    ding.play().then(() => {
+    ding.play().catch(() => {});
+
+    setTimeout(() => {
       speechSynthesis.speak(msg);
-    }).catch(() => {
-      speechSynthesis.speak(msg);
-    });
+    }, 800);
   } else {
     speechSynthesis.speak(msg);
   }

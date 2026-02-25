@@ -99,12 +99,20 @@ function callNumber() {
 
   const currentNumber = number;
 
+  speechSynthesis.cancel();
+
+  const ding =
+document.getElementById("ding");
+  if (ding) {
+    ding.currentTime = 0;
+    ding.play().catch(() => {});
+  }
+
   const msg = new SpeechSynthesisUtterance(
     currentNumber + "번 고객님, 음료가 준비되었습니다."
   );
   msg.lang = "ko-KR";
 
-  speechSynthesis.cancel();
   speechSynthesis.speak(msg);
 
   document.getElementById("recent").innerText =

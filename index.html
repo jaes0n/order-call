@@ -66,6 +66,14 @@ button:active {
   <button class="call" onclick="callNumber()">호출</button>
 </div>
 
+  <p id="recent" style="font-size:18px; opacity:0.7; margin-top:20px;">
+최근 호출: 없음
+</p>
+
+<button onclick="cancelCall()" style="margin-top:15px; background:#888;">
+호출 취소
+</button>
+
 <script>
 let number = "";
 
@@ -82,6 +90,8 @@ function clearDisplay() {
 function callNumber() {
   if (number === "") return;
 
+  const currentNumber = number;
+
   const msg = new SpeechSynthesisUtterance(
     number + "번 고객님, 음료가 준비되었습니다."
   );
@@ -90,9 +100,16 @@ function callNumber() {
   speechSynthesis.cancel();
   speechSynthesis.speak(msg);
 
+  document.getElementById("recent").innerText = "최근 호출: ; " + currentNumber + "번";
+
   number = "";
   document.getElementById("display").innerText = "0";
 }
+
+function cancelCall() {
+  speechSynthesis.cancel();
+}
+
 </script>
 
 </body>

@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>주문 호출기</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #111;
+  color: white;
+  margin: 0;
+}
+#display {
+  font-size: 80px;
+  margin: 40px 0;
+}
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+button {
+  font-size: 40px;
+  padding: 30px;
+  border-radius: 20px;
+  border: none;
+  background: #333;
+  color: white;
+}
+button:active {
+  background: #555;
+}
+.call {
+  background: #007aff;
+}
+.clear {
+  background: #ff3b30;
+}
+</style>
+</head>
+
+<body>
+
+<div id="display">0</div>
+
+<div class="keypad">
+  <button onclick="add(1)">1</button>
+  <button onclick="add(2)">2</button>
+  <button onclick="add(3)">3</button>
+  <button onclick="add(4)">4</button>
+  <button onclick="add(5)">5</button>
+  <button onclick="add(6)">6</button>
+  <button onclick="add(7)">7</button>
+  <button onclick="add(8)">8</button>
+  <button onclick="add(9)">9</button>
+  <button class="clear" onclick="clearDisplay()">C</button>
+  <button onclick="add(0)">0</button>
+  <button class="call" onclick="callNumber()">호출</button>
+</div>
+
+<script>
+let number = "";
+
+function add(n) {
+  number += n;
+  document.getElementById("display").innerText = number;
+}
+
+function clearDisplay() {
+  number = "";
+  document.getElementById("display").innerText = "0";
+}
+
+function callNumber() {
+  if (number === "") return;
+
+  const msg = new SpeechSynthesisUtterance(
+    "주문 번호 " + number + "번 고객님, 음료가 준비되었습니다."
+  );
+  msg.lang = "ko-KR";
+
+  speechSynthesis.cancel();
+  speechSynthesis.speak(msg);
+
+  number = "";
+  document.getElementById("display").innerText = "0";
+}
+</script>
+
+</body>
+</html>

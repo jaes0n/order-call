@@ -108,7 +108,7 @@ function callNumber() {
   
 if (ding) {
     ding.currentTime = 0;
-    ding.play().catch(() => {});
+    ding.play();
 
     setTimeout(() => {
       speechSynthesis.speak(msg);

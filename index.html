@@ -93,33 +93,17 @@ function clearDisplay() {
 }
 
 function callNumber() {
-  if (!number) return;
+  if (number === "") return;
 
-  speechSynthesis.cancel();
+const currentNumber = number;
 
-  setTimeout(() => {
+const msg = new SpeechSynthesisUtterance(
+  `${currentNumber}번 고객님, 음료가 준비되었습니다.`
+);
 
-    const msg = new SpeechSynthesisUtterance(
-      `${number}번 고객님, 음료가 준비되었습니다.`
-    );
+msg.lang = "ko-KR";
 
-    msg.lang = "ko-KR";
-    msg.rate = 1;
-    msg.pitch = 1;
-    msg.volume = 1;
-
-    msg.onend = () => {
-      console.log("음성 종료");
-    };
-
-    msg.onerror = (e) => {
-      console.log("TTS 오류", e);
-    };
-
-    speechSynthesis.speak(msg);
-
-  }, 200);
-  }
+speechSynthesis.speak(msg);
   
   const ding = document.getElementById("ding");
   

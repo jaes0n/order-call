@@ -93,17 +93,21 @@ function clearDisplay() {
 }
 
 function callNumber() {
-  if (number === "") return;
+  if (!number) return;
 
-const currentNumber = number;
+speechSynthesis.cancel();
 
-const msg = new SpeechSynthesisUtterance(
-  `${currentNumber}번 고객님, 음료가 준비되었습니다.`
-);
+setTimeout(() => {
 
-msg.lang = "ko-KR";
+  const msg = new SpeechSynthesisUtterance(
+    `${number}번 고객님, 음료가 준비되었습니다.`
+  );
 
-speechSynthesis.speak(msg);
+  msg.lang = "ko-KR";
+
+  speechSynthesis.speak(msg);
+
+}, 500);
   
   const ding = document.getElementById("ding");
   
